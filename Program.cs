@@ -15,21 +15,24 @@ namespace data_practice
         {
             DeleteData("Users");
 ;           
-            //CreateDatabase("test");
-            //CreateTable("Users", "test.db");                                                               
-
-            for (int i = 0; i < 3; i++)
+            CreateDatabase("test");
+            
+            for(int i =0; i < 3; i++)
             {
-                Console.Write("Name: ");
-                string name = Console.ReadLine();
+                Console.WriteLine("Employee: ")
+                string employee = Console.ReadLine();
 
-                Console.Write("Age: ");
-                int age = Convert.ToInt32(Console.ReadLine());
-
-                AddData(name, age);
+                Console.WriteLine("Department: ");
+                string department = Console.ReadLine();
             }
             
-            FindOlderThan(21, "Users");
+            //Reduce these functions. Handle data adding in a seperate function..
+            CreateDepartmentTable("test.db", "Departments");
+            CreateEmployeeTable("test.db","Employees");
+            
+
+
+            
 
             //Getting all entries in the users table with the age above 25
             
@@ -71,13 +74,30 @@ namespace data_practice
             Console.WriteLine("Database created!");
             Console.ReadKey();
         }
-        static void CreateTable(string tableName, string dataBase)
+        static void CreateEmployeeTable(string dataBase, string tableName, string name, string department, int salary)
         {
             using (var connection = new SQLiteConnection("Data source=" + dataBase))
             {
                 connection.Open();
 
-                string createTableQuery = "CREATE TABLE IF NOT EXISTS " + tableName + " (Id INTEGER PRIMARY KEY, Name TEXT, Age INTEGER)";
+                string createTableQuery = $"CREATE TABLE IF NOT EXISTS {tableName} (id INTEGER PRIMARY KEY, {name} TEXT, {department} TEXT, INTEGER {salary})";
+
+                using (var command = new SQLiteCommand(createTableQuery, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+
+                Console.WriteLine("Table Created");
+                Console.ReadKey();
+            }
+        }
+        static void CreateDepartmentTable(string datastring tableName, string name)
+        {
+            using (var connection = new SQLiteConnection("Data source=" + dataBase))
+            {
+                connection.Open();
+
+                string createTableQuery = $"CREATE TABLE IF NOT EXISTS {tableName} (id INTEGER PRIMARY KEY, {name} TEXT)";
 
                 using (var command = new SQLiteCommand(createTableQuery, connection))
                 {

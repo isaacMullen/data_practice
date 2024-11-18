@@ -14,3 +14,19 @@ E:\personal_projects\data_practice\obj\Debug\data_practice.csproj.CoreCompileInp
 E:\personal_projects\data_practice\obj\Debug\data_pra.2C13676E.Up2Date
 E:\personal_projects\data_practice\obj\Debug\data_practice.exe
 E:\personal_projects\data_practice\obj\Debug\data_practice.pdb
+C:\Isaacs Personal Projects\data_practice\bin\Debug\data_practice.exe.config
+C:\Isaacs Personal Projects\data_practice\bin\Debug\data_practice.exe
+C:\Isaacs Personal Projects\data_practice\bin\Debug\data_practice.pdb
+C:\Isaacs Personal Projects\data_practice\bin\Debug\EntityFramework.dll
+C:\Isaacs Personal Projects\data_practice\bin\Debug\EntityFramework.SqlServer.dll
+C:\Isaacs Personal Projects\data_practice\bin\Debug\System.Data.SQLite.dll
+C:\Isaacs Personal Projects\data_practice\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Isaacs Personal Projects\data_practice\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Isaacs Personal Projects\data_practice\bin\Debug\EntityFramework.xml
+C:\Isaacs Personal Projects\data_practice\bin\Debug\EntityFramework.SqlServer.xml
+C:\Isaacs Personal Projects\data_practice\bin\Debug\System.Data.SQLite.xml
+C:\Isaacs Personal Projects\data_practice\obj\Debug\data_practice.csproj.AssemblyReference.cache
+C:\Isaacs Personal Projects\data_practice\obj\Debug\data_practice.csproj.CoreCompileInputs.cache
+C:\Isaacs Personal Projects\data_practice\obj\Debug\data_pra.2C13676E.Up2Date
+C:\Isaacs Personal Projects\data_practice\obj\Debug\data_practice.exe
+C:\Isaacs Personal Projects\data_practice\obj\Debug\data_practice.pdb

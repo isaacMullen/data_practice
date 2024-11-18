@@ -1,0 +1,16 @@
+E:\personal_projects\data_practice\bin\Debug\data_practice.exe.config
+E:\personal_projects\data_practice\bin\Debug\data_practice.exe
+E:\personal_projects\data_practice\bin\Debug\data_practice.pdb
+E:\personal_projects\data_practice\bin\Debug\EntityFramework.dll
+E:\personal_projects\data_practice\bin\Debug\EntityFramework.SqlServer.dll
+E:\personal_projects\data_practice\bin\Debug\System.Data.SQLite.dll
+E:\personal_projects\data_practice\bin\Debug\System.Data.SQLite.EF6.dll
+E:\personal_projects\data_practice\bin\Debug\System.Data.SQLite.Linq.dll
+E:\personal_projects\data_practice\bin\Debug\EntityFramework.xml
+E:\personal_projects\data_practice\bin\Debug\EntityFramework.SqlServer.xml
+E:\personal_projects\data_practice\bin\Debug\System.Data.SQLite.xml
+E:\personal_projects\data_practice\obj\Debug\data_practice.csproj.AssemblyReference.cache
+E:\personal_projects\data_practice\obj\Debug\data_practice.csproj.CoreCompileInputs.cache
+E:\personal_projects\data_practice\obj\Debug\data_pra.2C13676E.Up2Date
+E:\personal_projects\data_practice\obj\Debug\data_practice.exe
+E:\personal_projects\data_practice\obj\Debug\data_practice.pdb

@@ -13,57 +13,80 @@ namespace data_practice
     {
         static void Main()
         {
-            DeleteData("Users");
+            //DeleteData("Employees");
 ;           
-            CreateDatabase("test");
-            
-            for(int i =0; i < 3; i++)
-            {
-                Console.WriteLine("Employee: ")
-                string employee = Console.ReadLine();
+            //CreateDatabase("test");
 
-                Console.WriteLine("Department: ");
-                string department = Console.ReadLine();
+            CreateEmployeeTable("test.db", "Employees");
+
+
+            Console.Write("How many rows would you like to enter?: ");
+            int howManyEntries = Convert.ToInt32(Console.ReadLine());
+            
+            for (int i = 0; i < howManyEntries; i++)
+            {
+                Console.Write("Employee: ");
+                string employeeName = Console.ReadLine();
+
+                Console.Write("Department: ");
+                string employeeDepartment = Console.ReadLine();
+
+                Console.Write("Salary: ");
+                int employeeSalary = Convert.ToInt32(Console.ReadLine());
+
+                
+                AddEmployee(employeeName, employeeDepartment, employeeSalary);
+                
             }
-            
-            //Reduce these functions. Handle data adding in a seperate function..
-            CreateDepartmentTable("test.db", "Departments");
-            CreateEmployeeTable("test.db","Employees");
-            
-
-
-            
-
-            //Getting all entries in the users table with the age above 25
-            
+            //Getting the data from table row by row with all columns present
+            RetreiveData();
+            //Finding the highest Salary inside the table
+            FindHigestSalary("Employees");            
         }
-        static void FindOlderThan(int minAge, string table)
+        
+        static void FindHigestSalary(string table)
         {
-            Console.Write($"Enter a minimum age: ");           
-            
-            using (var connection = new SQLiteConnection("Data Source=test.db"))
+            using (var connection = new SQLiteConnection("Data source=test.db"))
             {
+                
                 connection.Open();
 
-                string selectQuery = $"SELECT id, Name, Age FROM {table} WHERE Age > {minAge}";
+                string maxSalaryQuery = $"SELECT MAX(Salary) from {table}";
+                int highestValue = 0;
 
-                using (var command = new SQLiteCommand(selectQuery, connection))
-                using (var reader = command.ExecuteReader())
+                using (var command = new SQLiteCommand(maxSalaryQuery, connection))
                 {
-                    Console.WriteLine();
-                    Console.WriteLine($"Users older than {minAge}");
-
-                    while (reader.Read())
+                    object result = command.ExecuteScalar();
+                    
+                    if(result != DBNull.Value)
                     {
-                        int id = reader.GetInt32(0);
-                        string name = reader.GetString(1);
-                        int age = reader.GetInt32(2);
-
-                        Console.WriteLine($"Id: {id} | Age: {age} | Name: {name} | ");
+                        highestValue = Convert.ToInt32(result);
                     }
                 }
+
+                string selectQuery = $"SELECT id, Name, Department, Salary FROM {table} WHERE Salary = @Salary";
+
+                using (var command = new SQLiteCommand(selectQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@Salary", highestValue);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string name = reader.GetString(1);
+                            string department = reader.GetString(2);
+                            int salary = reader.GetInt32(3);
+
+                            Console.WriteLine($"Higest Paid Employee: | Id: {id}, Name: {name}, Department: {department}, Salary: {salary}");
+                            Console.ReadKey();
+                        }
+                    }
+                }
+
+                
             }
-            Console.ReadKey();
         }
         static void CreateDatabase(string fileName)
         {
@@ -74,24 +97,40 @@ namespace data_practice
             Console.WriteLine("Database created!");
             Console.ReadKey();
         }
-        static void CreateEmployeeTable(string dataBase, string tableName, string name, string department, int salary)
+        static void CreateEmployeeTable(string dataBase, string tableName)
         {
             using (var connection = new SQLiteConnection("Data source=" + dataBase))
             {
                 connection.Open();
 
-                string createTableQuery = $"CREATE TABLE IF NOT EXISTS {tableName} (id INTEGER PRIMARY KEY, {name} TEXT, {department} TEXT, INTEGER {salary})";
+                string createTableQuery = $"CREATE TABLE IF NOT EXISTS {tableName} (id INTEGER PRIMARY KEY, Name TEXT, Department TEXT, Salary INTEGER)";
 
                 using (var command = new SQLiteCommand(createTableQuery, connection))
                 {
                     command.ExecuteNonQuery();
                 }
 
-                Console.WriteLine("Table Created");
+                Console.WriteLine($"Table: '{tableName}' is ready.");
+                
+            }
+        }
+        static void AddEmployee(string name, string department, int salary)
+        {
+            using (var connection = new SQLiteConnection("Data Source=test.db"))
+            {
+                connection.Open();
+
+                string insetQuery = $"INSERT INTO Employees (Name, Department, Salary) VALUES ('{name}', '{department}', '{salary}')";
+
+                using (var command = new SQLiteCommand(insetQuery, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+                Console.WriteLine($"Data ({name}, {department}, {salary}) Entered");
                 Console.ReadKey();
             }
         }
-        static void CreateDepartmentTable(string datastring tableName, string name)
+        static void CreateDepartmentTable(string dataBase, string tableName, string name)
         {
             using (var connection = new SQLiteConnection("Data source=" + dataBase))
             {
@@ -125,14 +164,14 @@ namespace data_practice
             }
             Console.ReadKey();
         }
-        static void RetrieveNameAndAge()
+        static void RetreiveData()
         {
             using (var connection = new SQLiteConnection("Data Source=test.db"))
             {
                 connection.Open();
 
                 // Retrieve data from the Users table
-                string selectQuery = "SELECT Id, Name, Age FROM Users";
+                string selectQuery = "SELECT Id, Name, Department, Salary FROM Employees";
                 using (var command = new SQLiteCommand(selectQuery, connection))
                 using (var reader = command.ExecuteReader())
                 {
@@ -140,9 +179,10 @@ namespace data_practice
                     {
                         int id = reader.GetInt32(0);
                         string name = reader.GetString(1);
-                        int age = reader.GetInt32(2);
+                        string department = reader.GetString(2);
+                        int salary = reader.GetInt32(3);
 
-                        Console.WriteLine($"ID: {id}, Name: {name}, Age: {age}");
+                        Console.WriteLine($"ID: {id}, Name: {name}, Department: {department}, Salary: {salary}");
                         Console.ReadKey();
                     }
                 }

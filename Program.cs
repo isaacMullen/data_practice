@@ -119,17 +119,17 @@ namespace data_practice
             ("Brianna Thomas", "Toys", 29736)
         };
 
-            DeleteData("Employees");
+            //DeleteData("Employees");
 
-            CreateDatabase("test");
+            //CreateDatabase("test");
 
-            CreateEmployeeTable("Employees");
+            //CreateEmployeeTable("Employees");
 
-            foreach (var employee in employees)
-            {
-                AddEmployee(employee.Name, employee.Department, employee.Salary);
-            }
-            Console.WriteLine();
+            //foreach (var employee in employees)
+            //{
+                //AddEmployee(employee.Name, employee.Department, employee.Salary);
+            //}
+            //Console.WriteLine("Data Entered");
             Console.ReadKey();
 
             //Getting the data from table row by row with all columns present
@@ -346,7 +346,7 @@ namespace data_practice
                 {
                     command.ExecuteNonQuery();
                 }
-                Console.WriteLine($"Data Entered: ({name}, {department}, {salary})");
+                //Console.WriteLine($"Data Entered: ({name}, {department}, {salary})");
                 
             }            
         }

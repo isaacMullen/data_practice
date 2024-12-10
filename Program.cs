@@ -11,12 +11,11 @@ using System.IO;
 namespace data_practice
 {
     internal class Program
-    {
-        
-        
+    {                
         static void Main()
         {
-        var employees = new (string Name, string Department, int Salary)[]
+        
+            var employees = new (string Name, string Department, int Salary)[]
         {
             ("Benjamin Forbes", "Toys", 29549),
             ("Jason Ward", "Clothing", 21541),
@@ -119,6 +118,11 @@ namespace data_practice
             ("Brianna Thomas", "Toys", 29736)
         };
 
+            foreach(var employee in employees)
+            {
+                Console.WriteLine(employee.GetType());
+            }
+            
             //DeleteData("Employees");
 
             //CreateDatabase("test");
